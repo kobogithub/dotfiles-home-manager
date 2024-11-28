@@ -8,8 +8,8 @@
   ];
 
   home = {
-    username = "tuusuario";  # Cambiar a tu usuario
-    homeDirectory = "/home/tuusuario";  # Cambiar a tu directorio
+    username = "kobo";  # Cambiar a tu usuario
+    homeDirectory = "/home/kobo";  # Cambiar a tu directorio
     stateVersion = "23.11";
     
     packages = with pkgs; [
@@ -21,6 +21,8 @@
       fd
     ];
   };
-
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+    path = "/home/kobo/.config/nixpkgs";
+  };
 }
