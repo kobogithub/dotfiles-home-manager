@@ -1,0 +1,14 @@
+# Nix
+result
+result-*
+
+# Directorios generados
+.direnv
+.envrc
+
+# Backups
+*.backup
+*.bak
+
+# Sistema
+.DS_Store
