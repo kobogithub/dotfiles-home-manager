@@ -4,6 +4,7 @@
   imports = [
     ./modules/git.nix
     ./modules/zsh.nix
+    ./modules/docker.nix
     # Añadir más módulos según necesites
   ];
 

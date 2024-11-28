@@ -72,6 +72,7 @@ fi
 # Crear enlace simbólico
 log "Creando enlace simbólico..."
 ln -sf "$DOTFILES_DIR/home-manager" "$HOME/.config/home-manager" || error "No se pudo crear el enlace simbólico"
+ln -sf "$DOTFILES_DIR/home-manager" "$HOME/.config/nixpkgs" || error "No se pudo crear el enlace simbólico"
 
 # Aplicar configuración
 log "Aplicando configuración de Home Manager..."
