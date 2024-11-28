@@ -2,9 +2,11 @@
 
 {
   imports = [
-    ./modules/git.nix
-    ./modules/zsh.nix
-    ./modules/docker.nix
+    ./modules/git.nix # Modulo de Git
+    ./modules/zsh.nix # Modulo de Zsh Shell
+    ./modules/docker.nix # Modulo de Docker
+    ./modules/aws.nix # Modulo de AWS
+    ./modules/tmux.nix # Modulo de Tmux
     # Añadir más módulos según necesites
   ];
 
@@ -15,11 +17,17 @@
     
     packages = with pkgs; [
       # Paquetes básicos
-      curl
-      wget
-      htop
-      ripgrep
-      fd
+      curl      # Transferencia de datos con URLs (HTTP, FTP, etc.)
+      wget      # Descarga de archivos desde la web, soporta recursión
+      btop      # Monitor de sistema interactivo, versión mejorada de top/htop
+      ripgrep   # Búsqueda recursiva de texto, alternativa rápida a grep
+      neofetch  # Muestra información del sistema de forma visualmente atractiva
+      fd        # Alternativa simple y rápida a 'find', con mejor sintaxis
+      tree               # Visualización de directorios en árbol
+      ncdu               # Análisis de uso de disco
+      duf                # Mejor df
+      tldr              # Ejemplos prácticos de comandos
+      jq                # Procesamiento de JSON
     ];
   };
   programs.home-manager = {

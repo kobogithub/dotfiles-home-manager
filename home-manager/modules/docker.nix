@@ -32,12 +32,4 @@
       echo "sudo usermod -aG docker $USER"
     fi
   '';
-
-  # Configuración de Docker
-  home.file.".docker/config.json".text = builtins.toJSON {
-    experimental = true;
-    features = {
-      buildkit = true;
-    };
-  };
 }

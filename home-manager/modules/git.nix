@@ -15,6 +15,7 @@
       st = "status";
       co = "checkout";
       br = "branch";
+      lg = "lazygit";
     };
    extraConfig = {
       core = {
