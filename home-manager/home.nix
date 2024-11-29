@@ -7,6 +7,7 @@
     ./modules/docker.nix # Modulo de Docker
     ./modules/aws.nix # Modulo de AWS
     ./modules/tmux.nix # Modulo de Tmux
+    ./modules/astro.nix # Modulo de AstroNvim
     # Añadir más módulos según necesites
   ];
 
@@ -14,7 +15,6 @@
     username = "kobo";  # Cambiar a tu usuario
     homeDirectory = "/home/kobo";  # Cambiar a tu directorio
     stateVersion = "23.11";
-    
     packages = with pkgs; [
       # Paquetes básicos
       curl      # Transferencia de datos con URLs (HTTP, FTP, etc.)
@@ -32,11 +32,17 @@
       gcc
       gnumake
       libsecret
-      keyutils
+      cargo  # Gestor de Paquetes
+      rustc  # Compilador de Rust
+      rust-analyzer # LSP para Rust
     ];
   };
   programs.home-manager = {
     enable = true;
     path = "/home/kobo/.config/nixpkgs";
   };
+
+  modules.astrovim = {
+	enable = true;
+ };
 }
