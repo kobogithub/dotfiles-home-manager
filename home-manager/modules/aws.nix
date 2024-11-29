@@ -30,11 +30,13 @@
     awswho = "aws sts get-caller-identity";
     awsregions = "aws ec2 describe-regions --output table";
     
-    # AWS con diferentes perfiles
-    aws = "export AWS_PROFILE=default";
-    awstaba = "export AWS_PROFILE=taba";
-    awslarti = "export AWS_PROFILE=larti";
+    # AWS Vault
+    avadd = "aws-vault --backend=file add";
+    avlist = "aws-vault --backend=file list";
     
+    ## AWS Vault Profile Exec
+    alarti = "aws-vault --backend=file exec larti -- aws";
+    ataba = "aws-vault --backend=file exec taba --aws";
   };
 
   # Configuración base de AWS
@@ -46,9 +48,11 @@
     [profile taba]
     region = us-east-1
     output = json
+    backend = file
 
     [profile larti]
     region = us-east-1
     output = json
+    backend = file
   '';
 }
