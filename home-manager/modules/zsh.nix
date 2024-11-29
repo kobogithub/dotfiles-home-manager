@@ -117,7 +117,8 @@
 
     # Variables de entorno
     sessionVariables = {
-      EDITOR = "vim";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
       PATH = "$HOME/.local/bin:$PATH";
       LANG = "en_US.UTF-8";
     };
