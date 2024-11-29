@@ -28,6 +28,11 @@
       duf                # Mejor df
       tldr              # Ejemplos prácticos de comandos
       jq                # Procesamiento de JSON
+      pyenv
+      gcc
+      gnumake
+      libsecret
+      keyutils
     ];
   };
   programs.home-manager = {
