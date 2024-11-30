@@ -15,7 +15,6 @@
       st = "status";
       co = "checkout";
       br = "branch";
-      lg = "lazygit";
     };
     extraConfig = {
       core = {
@@ -31,5 +30,9 @@
         default = "simple";
       };
     };
+  };
+  # Añadir el alias en la configuración de tu shell (zsh por ejemplo)
+  programs.zsh.shellAliases = {
+    lg = "lazygit";
   };
 }
