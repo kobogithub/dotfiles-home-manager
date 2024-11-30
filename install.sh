@@ -47,8 +47,8 @@ if ! command -v home-manager &> /dev/null; then
 fi
 
 # Directorio del repositorio
-REPO_URL="https://github.com/TU_USUARIO/dotfiles.git"
-DOTFILES_DIR="$HOME/dotfiles"
+REPO_URL="https://github.com/kobogithub/dotfiles-home-manager.git"
+DOTFILES_DIR="$HOME/dotfiles-home-manager"
 
 # Clonar o actualizar el repositorio
 if [ ! -d "$DOTFILES_DIR" ]; then
