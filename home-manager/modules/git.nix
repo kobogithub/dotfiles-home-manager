@@ -3,8 +3,8 @@
 {
   # Paquetes relacionados con git
   home.packages = with pkgs; [
-    lazygit       # TUI para git
-    git-lfs      # Para archivos grandes
+    lazygit # TUI para git
+    git-lfs # Para archivos grandes
   ];
 
   programs.git = {
@@ -17,7 +17,7 @@
       br = "branch";
       lg = "lazygit";
     };
-   extraConfig = {
+    extraConfig = {
       core = {
         editor = "vim";
       };
