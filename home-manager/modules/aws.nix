@@ -3,10 +3,10 @@
 
 {
   home.packages = with pkgs; [
-    awscli2                # AWS CLI v2
-    aws-vault              # Manejo seguro de credenciales AWS
-    ssm-session-manager-plugin  # Para AWS Systems Manager
-    aws-sam-cli            # Para desarrollo serverless
+    awscli2 # AWS CLI v2
+    aws-vault # Manejo seguro de credenciales AWS
+    ssm-session-manager-plugin # Para AWS Systems Manager
+    aws-sam-cli # Para desarrollo serverless
   ];
 
   # Configuración de ambiente para AWS
@@ -29,30 +29,13 @@
     awsid = "aws sts get-caller-identity";
     awswho = "aws sts get-caller-identity";
     awsregions = "aws ec2 describe-regions --output table";
-    
+
     # AWS Vault
-    avadd = "aws-vault --backend=file add";
-    avlist = "aws-vault --backend=file list";
-    
+    avadd = "aws-vault --backend=pass add";
+    avlist = "aws-vault --backend=pass list";
+
     ## AWS Vault Profile Exec
-    alarti = "aws-vault --backend=file exec larti -- aws";
-    ataba = "aws-vault --backend=file exec taba --aws";
+    alarti = "aws-vault --backend=pass exec larti -- aws";
+    ataba = "aws-vault --backend=pass exec taba -- aws";
   };
-
-  # Configuración base de AWS
-  home.file.".aws/config".text = ''
-    [default]
-    region = us-east-1
-    output = json
-
-    [profile taba]
-    region = us-east-1
-    output = json
-    backend = file
-
-    [profile larti]
-    region = us-east-1
-    output = json
-    backend = file
-  '';
 }
