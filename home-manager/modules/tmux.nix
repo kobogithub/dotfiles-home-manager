@@ -157,6 +157,7 @@ in
     tls = "tmuxifier list-windows";
     tns = "tmuxifier ns";
     ts = "tmuxifier s";
+    tes = "tmuxifier es";
   };
 
   home.file.".tmux-layouts/dev.window.sh".text = ''
