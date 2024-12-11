@@ -1,15 +1,13 @@
-# home-manager/modules/docker.nix
 { config, pkgs, ... }:
-
 {
   home.packages = with pkgs; [
     docker
     docker-compose
     docker-credential-helpers
-    lazydocker    # TUI para Docker
+    lazydocker
   ];
 
-  # Aliases útiles para ocker
+  # El resto de tu configuración permanece igual...
   programs.zsh.shellAliases = {
     d = "docker";
     dc = "docker compose";
@@ -25,8 +23,7 @@
     dcl = "docker-compose logs -f";
   };
 
-  # Script de activación para configurar Docker
-  home.activation.dockerSetup = config.lib.dag.entryAfter ["writeBoundary"] ''
+  home.activation.dockerSetup = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     if ! groups | grep -q docker; then
       echo "Recuerda agregar tu usuario al grupo docker:"
       echo "sudo usermod -aG docker $USER"
