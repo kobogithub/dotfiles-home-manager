@@ -9,6 +9,11 @@
       # Cargar configuración de p10k si existe
             [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+      # Config Init Pyenv
+      export PYENV_ROOT="$HOME/.pyenv"
+      [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+      eval "$(pyenv init -)"
+
       # Historial
             HISTSIZE=10000
               SAVEHIST=10000
@@ -95,6 +100,8 @@
         "command-not-found"
         "history-substring-search"
         "aliases"
+        "kubectl"
+        "kubectx"
       ];
     };
 
@@ -114,7 +121,15 @@
       gst = "git status";
       d = "docker";
       dc = "docker compose";
+      dcb = "docker compose build";
       hms = "home-manager switch";
+      t = "tree";
+      # Kustomize aliases
+      ks = "kustomize";
+      kb = "kustomize build";
+      kba = "kustomize build . | kubectl apply -f -";
+      h = "history";
+      hg = "history | grep";
     };
 
     # Variables de entorno
@@ -151,10 +166,6 @@
             vcs     # Git status
             aws     # AWS
             docker  # Docker
-            )
-
-        typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-            status  # Estado del último comando
             )
 
     # Configuración minimalista del directorio
