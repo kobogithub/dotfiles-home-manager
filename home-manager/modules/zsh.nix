@@ -173,6 +173,8 @@
         typeset -g POWERLEVEL9K_DIR_FOREGROUND='blue'
         typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
         typeset -g POWERLEVEL9K_DIR_SHORTEN_STRATEGY='truncate_to_last'
+        typeset -g POWERLEVEL9K_TIME_BACKGROUND='none'
+        typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='none'
 
     # Git sin fondo, solo iconos y colores de texto
         typeset -g POWERLEVEL9K_VCS_BACKGROUND='none'
