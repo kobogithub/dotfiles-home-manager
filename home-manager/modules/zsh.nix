@@ -174,6 +174,16 @@
         typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
         typeset -g POWERLEVEL9K_DIR_SHORTEN_STRATEGY='truncate_to_last'
         typeset -g POWERLEVEL9K_TIME_BACKGROUND='none'
+        typeset -g POWERLEVEL9K_TIME_FOREGROUND='yellow'
+        typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND='none'
+        typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='green'
+        typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND='none'
+        typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND='none'
+        typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND='none'
+        typeset -g POWERLEVEL9K_HISTORY_BACKGROUND='none'
+        typeset -g POWERLEVEL9K_HISTORY_FOREGROUND='blue'
+        typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='blue'
+        typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='red'
         typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='none'
 
     # Git sin fondo, solo iconos y colores de texto
