@@ -53,6 +53,7 @@
       traceroute # Seguimiento de Rutas
       nodePackages.pnpm # gestor de paquetes de Node
       inetutils # Paquete para comunicaciones
+      duckdb # Base de datos OLAP
     ];
   };
   programs.fly = {
