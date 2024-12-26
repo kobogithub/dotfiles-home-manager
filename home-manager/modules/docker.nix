@@ -21,6 +21,8 @@
     dcup = "docker-compose up -d";
     dcdown = "docker-compose down";
     dcl = "docker-compose logs -f";
+    dcxls = "docker context ls";
+    dcxu = "docker context use";
   };
 
   home.activation.dockerSetup = config.lib.dag.entryAfter [ "writeBoundary" ] ''
