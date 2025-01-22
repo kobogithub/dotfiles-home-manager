@@ -128,6 +128,7 @@
       ks = "kustomize";
       kb = "kustomize build";
       kba = "kustomize build . | kubectl apply -f -";
+      kbha = "kustomize build --enable-helm . | kubectl apply -f -";
       h = "history";
       hg = "history | grep";
     };
