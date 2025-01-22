@@ -14,6 +14,7 @@
     ./modules/pass.nix # Modulo de Gestor de Credenciales
     ./modules/gotify.nix # Modulo de Gotify Cli para mensajeria
     ./modules/fly.nix # Modulo del Cliente de Concourse CI Fly
+    ./modules/fabric.nix # Modulo de Fabric
     ###############################
     ########## SCRIPTS ############
     ###############################
@@ -54,6 +55,7 @@
       nodePackages.pnpm # gestor de paquetes de Node
       inetutils # Paquete para comunicaciones
       duckdb # Base de datos OLAP
+      pet # Command Manager
     ];
   };
   programs.fly = {
@@ -64,6 +66,10 @@
         team = "main";
       };
     };
+  };
+
+  programs.fabric = {
+    enable = true;
   };
 
   programs.home-manager = {
