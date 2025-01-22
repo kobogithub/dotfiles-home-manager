@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  # Tu definición actual de clipboard
+  # Definición de clipboard
   clipboard = pkgs.stdenv.mkDerivation {
     name = "clipboard";
     version = "0.8.1";
@@ -38,11 +38,10 @@ in
       battery
       online-status
       prefix-highlight
-      # Añadimos el plugin de Catppuccin
       {
         plugin = catppuccin;
         extraConfig = ''
-          # Configure Catppuccin
+          # Configuración de Catppuccin
           set -g @catppuccin_flavor "macchiato"
           set -g @catppuccin_status_background "none"
           set -g @catppuccin_window_status_style "none"
@@ -53,92 +52,107 @@ in
     ];
     extraConfig = ''
       ######### TMUX CONFIG ############
+      
+      # Definición de colores Catppuccin Macchiato
+      set -g @thm_base "#24273a"
+      set -g @thm_mantle "#1e2030"
+      set -g @thm_surface_0 "#363a4f"
+      set -g @thm_surface_1 "#494d64"
+      set -g @thm_surface_2 "#5b6078"
+      set -g @thm_overlay_0 "#6e738d"
+      set -g @thm_overlay_1 "#8087a2"
+      set -g @thm_overlay_2 "#939ab7"
+      set -g @thm_text "#cad3f5"
+      set -g @thm_subtext_0 "#b8c0e0"
+      set -g @thm_subtext_1 "#a5adcb"
+      set -g @thm_rosewater "#f4dbd6"
+      set -g @thm_flamingo "#f0c6c6"
+      set -g @thm_pink "#f5bde6"
+      set -g @thm_mauve "#c6a0f6"
+      set -g @thm_red "#ed8796"
+      set -g @thm_maroon "#ee99a0"
+      set -g @thm_peach "#f5a97f"
+      set -g @thm_yellow "#eed49f"
+      set -g @thm_green "#a6da95"
+      set -g @thm_teal "#8bd5ca"
+      set -g @thm_sky "#91d7e3"
+      set -g @thm_sapphire "#7dc4e4"
+      set -g @thm_blue "#8aadf4"
+      set -g @thm_lavender "#b7bdf8"
+      
+      # Configuración general
+      set -g mouse on
+      
+      # Configuración de logs
+      set -g history-file ~/.tmux_history
+      set -g history-limit 50000
+      
+      # Habilitar logging
+      bind P pipe-pane -o "cat >>~/.tmux/#W.log" \; display "Logging to ~/.tmux/#W.log"
+      bind p pipe-pane \; display "Logging ended"
+      set -g status-position bottom
+      set -g status-style "bg=#{@thm_base}"
+      
+      # Configuración del status-left
+      set -g status-left-length 100
+      set -g status-left ""
+      set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_mantle},bold]  #S },#{#[bg=#{@thm_mantle},fg=#{@thm_green}]  #S }}"
+      set -ga status-left "#[bg=#{@thm_mantle},fg=#{@thm_overlay_0},none]│"
+      set -ga status-left "#[bg=#{@thm_mantle},fg=#{@thm_maroon}]  #{pane_current_command} "
+      set -ga status-left "#[bg=#{@thm_mantle},fg=#{@thm_overlay_0},none]│"
+      set -ga status-left "#[bg=#{@thm_mantle},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
 
-      # Configure Online
+      # Configuración del status-right
+      set -g status-right-length 100
+      set -g status-right ""
+      set -ga status-right "#{?#{e|>=:10,#{battery_percentage}},#{#[bg=#{@thm_red},fg=#{@thm_mantle}]},#{#[bg=#{@thm_mantle},fg=#{@thm_pink}]}} #{battery_icon} #{battery_percentage} "
+      set -ga status-right "#[bg=#{@thm_mantle},fg=#{@thm_overlay_0}, none]│"
+      set -ga status-right "#[bg=#{@thm_mantle}]#{?#{==:#{online_status},ok},#[fg=#{@thm_mauve}] 󰖩 on ,#[fg=#{@thm_red},bold]#[reverse] 󰖪 off }"
+      set -ga status-right "#[bg=#{@thm_mantle},fg=#{@thm_overlay_0}, none]│"
+      set -ga status-right "#[bg=#{@thm_mantle},fg=#{@thm_blue}] 󰭦 %Y-%m-%d 󰅐 %H:%M "
+
+      # Configuración de ventanas
+      set -g window-status-separator "|"
+      set -g status-justify "absolute-centre"
+      set -g @catppuccin_window_status_style "custom"
+      set -g @catppuccin_window_flags ""
+      set -g @catppuccin_window_number ""
+      set -g @catppuccin_window_text "#[fg=#{@thm_rosewater},bg=#{@thm_mantle}] #I#{?#{!=:#{window_name},},: #W ,}"
+      set -g @catppuccin_window_current_number ""
+      set -g @catppuccin_window_current_text "#[fg=#{@thm_mantle},bg=#{@thm_peach}] #I#{?#{!=:#{window_name},},: #W ,}"
+      set -wg automatic-rename on
+      set -g automatic-rename-format ""
+
+      # Configuración de Online Status
       set -g @online_icon "ok"
       set -g @offline_icon "nok"
 
-      # status left look and feel
-      set -g status-left-length 100
-      set -g status-left ""
-      set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_bg},bold]  #S },#{#[bg=#{@thm_bg},fg=#{@thm_green}]  #S }}"
-      set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
-      set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_maroon}]  #{pane_current_command} "
-      set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
-      set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
-      set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]#{?window_zoomed_flag,│,}"
-      set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_yellow}]#{?window_zoomed_flag,  zoom ,}"
-
-      # status right look and feel
-      set -g status-right-length 100
-      set -g status-right ""
-      set -ga status-right "#{?#{e|>=:10,#{battery_percentage}},#{#[bg=#{@thm_red},fg=#{@thm_bg}]},#{#[bg=#{@thm_bg},fg=#{@thm_pink}]}} #{battery_icon} #{battery_percentage} "
-      set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
-      set -ga status-right "#[bg=#{@thm_bg}]#{?#{==:#{online_status},ok},#[fg=#{@thm_mauve}] 󰖩 on ,#[fg=#{@thm_red},bold]#[reverse] 󰖪 off }"
-      set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
-      set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_blue}] 󰭦 %Y-%m-%d 󰅐 %H:%M "
-
-      # bootstrap tpm
-      if "test ! -d ~/.tmux/plugins/tpm" \
-        "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
-
-      # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-      run '~/.tmux/plugins/tpm/tpm'
-
-      # Configure Tmux
-      set -g status-position top
-      set -g status-style "bg=#{@thm_bg}"
-      set -g status-justify "absolute-centre"
-
-      # pane border look and feel
-      setw -g pane-border-status top
-      setw -g pane-border-format ""
-      setw -g pane-active-border-style "bg=#{@thm_bg},fg=#{@thm_overlay_0}"
-      setw -g pane-border-style "bg=#{@thm_bg},fg=#{@thm_surface_0}"
-      setw -g pane-border-lines single
-
-      # window look and feel
-      set -wg automatic-rename on
-      set -g automatic-rename-format "Window"
-
-      set -g window-status-format " #I#{?#{!=:#{window_name},Window},: #W,} "
-      set -g window-status-style "bg=#{@thm_bg},fg=#{@thm_rosewater}"
-      set -g window-status-last-style "bg=#{@thm_bg},fg=#{@thm_peach}"
-      set -g window-status-activity-style "bg=#{@thm_red},fg=#{@thm_bg}"
-      set -g window-status-bell-style "bg=#{@thm_red},fg=#{@thm_bg},bold"
-      set -gF window-status-separator "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}]│"
-
-      set -g window-status-current-format " #I#{?#{!=:#{window_name},Window},: #W,} "
-      set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
-    
-      # Tu configuración actual de yank
-      set -g @yank_selection 'clipboard'
-      set -g @yank_selection_mouse 'clipboard'
+      # Configuración de copiar/pegar
+      set -g @yank_selection "clipboard"
+      set -g @yank_selection_mouse "clipboard"
       set -g @yank_with_mouse on
-      set -g @yank_action 'copy-pipe-and-cancel "cb copy"'
+      set -g @yank_action "copy-pipe-and-cancel 'cb copy'"
       
-      # Tu configuración básica
-      set -g mouse on
-      bind r source-file ~/.tmux.conf \; display "Configuración Recargada!"
+      # Keybindings
+      bind r source-file ~/.tmux.conf \; display "¡Configuración Recargada!"
       bind | split-window -h -c "#{pane_current_path}"
       bind - split-window -v -c "#{pane_current_path}"
-      
-      # Tu configuración de copiar/pegar
       bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "cb copy"
       bind -T copy-mode-vi v send-keys -X begin-selection
       bind -T copy-mode-vi r send-keys -X rectangle-toggle
-      
-      # Configuración de continuum
-      set -g @continuum-restore 'on'
-      set -g @continuum-save-interval '10'
+
+      # Configuración de Continuum
+      set -g @continuum-restore "on"
+      set -g @continuum-save-interval "10"
     '';
   };
 
-  # El resto de tu configuración permanece igual...
+  # Paquetes adicionales
   home.packages = with pkgs; [
     tmuxifier
   ];
 
+  # Configuración de ZSH para tmuxifier
   programs.zsh.initExtra = ''
     # Tmuxifier
     export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
@@ -149,6 +163,7 @@ in
     fi
   '';
 
+  # Alias de ZSH para tmux
   programs.zsh.shellAliases = {
     tx = "tmuxifier";
     tl = "tmuxifier load-window";
@@ -160,6 +175,7 @@ in
     tes = "tmuxifier es";
   };
 
+  # Layout de desarrollo
   home.file.".tmux-layouts/dev.window.sh".text = ''
     # Layout de desarrollo
     window_root "~/proyectos"
