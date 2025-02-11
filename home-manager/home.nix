@@ -15,6 +15,7 @@
     ./modules/gotify.nix # Modulo de Gotify Cli para mensajeria
     ./modules/fly.nix # Modulo del Cliente de Concourse CI Fly
     ./modules/fabric.nix # Modulo de Fabric
+    # ./modules/posting.nix # HTTP Client API
     ###############################
     ########## SCRIPTS ############
     ###############################
@@ -56,6 +57,14 @@
       inetutils # Paquete para comunicaciones
       duckdb # Base de datos OLAP
       pet # Command Manager
+      podman # Contenedores Podman
+      tgpt # Terminal Chat IA
+      timg # Visualizador de imagenes y videos por terminal
+      xh # Version Mejorada de Curl
+      nushell # New type of shell
+      viu # Visualizador de Imagenes
+      eksctl # CLI de EKS para manejo de Cluster
+      zoxide # Base de datos de Directorio
     ];
   };
   programs.fly = {
@@ -80,4 +89,8 @@
   modules.astrovim = {
     enable = true;
   };
+  programs.tmux = {
+    enable = true;
+  };
+
 }

@@ -63,6 +63,9 @@
 
       # Cargar Powerlevel10k
           source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+
+      # Zoxide Config
+          eval "$(zoxide init zsh)"
     '';
 
     # Plugins adicionales
@@ -131,6 +134,7 @@
       kbha = "kustomize build --enable-helm . | kubectl apply -f -";
       h = "history";
       hg = "history | grep";
+      z = "zoxide";
     };
 
     # Variables de entorno
